@@ -32,6 +32,25 @@
             background-color: #f9f9f9;
             color: var(--text-color);
             line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        /* شريط التقدم */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: var(--gold-color);
+            width: 0%;
+            transition: width 0.3s ease;
         }
         
         .container {
@@ -73,6 +92,81 @@
             color: var(--gold-color);
         }
         
+        /* قائمة الهامبرجر للجوّال */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 2rem;
+            height: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .menu-toggle span {
+            width: 2rem;
+            height: 0.25rem;
+            background: white;
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--gold-color);
+        }
+        
+        /* زر العودة للأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--gold-color);
+            color: var(--dark-color);
+            transform: translateY(-5px);
+        }
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
@@ -86,6 +180,7 @@
         
         .hero-content {
             width: 100%;
+            animation: fadeIn 1.5s ease-out;
         }
         
         .hero h2 {
@@ -110,12 +205,14 @@
             font-weight: 600;
             transition: all 0.3s ease;
             margin: 0.5rem;
+            box-shadow: var(--shadow);
         }
         
         .btn:hover {
             background: var(--gold-color);
             color: var(--dark-color);
             transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
         .btn-gold {
@@ -145,6 +242,13 @@
             width: 200px;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .social-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .social-card:hover {
@@ -233,6 +337,13 @@
             text-align: center;
             padding: 1.5rem;
             border-top: 4px solid var(--accent-color);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .feature-card:hover {
@@ -277,11 +388,23 @@
             font-size: 1.5rem;
             box-shadow: var(--shadow);
             background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') no-repeat center center/cover;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
         }
         
         .app-details {
             flex: 1;
             min-width: 300px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .app-showcase.visible .app-image,
+        .app-showcase.visible .app-details {
+            opacity: 1;
+            transform: translateX(0);
         }
         
         .app-details h2 {
@@ -409,6 +532,40 @@
                 gap: 1rem;
             }
             
+            .menu-toggle {
+                display: flex;
+                position: absolute;
+                top: 1.5rem;
+                left: 1rem;
+            }
+            
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            nav.active {
+                max-height: 300px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+            }
+            
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav a {
+                display: block;
+                padding: 1rem;
+            }
+            
             .hero h2 {
                 font-size: 2rem;
             }
@@ -450,21 +607,52 @@
             font-size: 0.8rem;
             margin-left: 0.5rem;
         }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
+    <!-- شريط التقدم -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
     <!-- Header Section -->
     <header>
         <div class="container header-content">
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
             <div class="logo">
                 <i class="fas fa-balance-scale"></i>
                 <h1>أورنمو - منبع القانون</h1>
             </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">الرئيسية</a></li>
+                    <li><a href="#features">المميزات</a></li>
+                    <li><a href="#social">وسائل التواصل</a></li>
+                    <li><a href="#download">تحميل التطبيق</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
     
+    <!-- زر العودة للأعلى -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container hero-content">
             <h2>أورنمو منبع القانون – إصدار "إنفنتي لا نهائي"</h2>
             <p>✨ القانون هو أساس المجتمع العادل ✨</p>
@@ -475,7 +663,7 @@
     </section>
     
     <!-- Social Media Section -->
-    <section class="social-section">
+    <section class="social-section" id="social">
         <div class="container">
             <h2 class="section-title">تواصل معنا على وسائل التواصل الاجتماعي</h2>
             <div class="social-container">
@@ -484,7 +672,7 @@
                         <i class="fab fa-facebook-f"></i>
                     </div>
                     <h3>فيسبوك</h3>
-                    <p>تابعنا على فيسبوك</p>
+                    <p>تابعنا على فيسبook</p>
                     <a href="https://www.facebook.com/share/19iXPBUUZU/" class="social-link" target="_blank">اذهب إلى الصفحة</a>
                 </div>
                 
@@ -604,7 +792,7 @@
                 </ul>
                 
                 <div class="university-badge">
-               برعاية  زيد علي العلي و جامعة وارث الأنبياء
+                    برعاية زيد علي العلي و جامعة وارث الأنبياء
                 </div>
             </div>
         </div>
@@ -635,7 +823,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>عن أورنمو</h3>
-                    <p>    أورنمو منبع القانون هو تطبيق شامل يقدم محتوى قانونيًا متكاملًا     برعاية  زيد علي العلي و جامعة وارث الأنبياء     </p>
+                    <p>أورنمو منبع القانون هو تطبيق شامل يقدم محتوى قانونيًا متكاملًا برعاية زيد علي العلي و جامعة وارث الأنبياء</p>
                 </div>
                 
                 <div class="footer-section">
@@ -665,24 +853,112 @@
     </footer>
 
     <script>
-        // Simple JavaScript for interactivity
+        // تفعيل قائمة الهامبرجر للجوّال
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            
+            // تحويل الأشرطة إلى X عند النشاط
+            const spans = menuToggle.querySelectorAll('span');
+            if (mainNav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+                const spans = menuToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+        
+        // شريط التقدم
+        window.onscroll = function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+            
+            // إظهار أو إخفاء زر العودة للأعلى
+            const backToTop = document.getElementById('backToTop');
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+            
+            // تفعيل تأثيرات الظهور عند التمرير
+            animateOnScroll();
+        };
+        
+        // تأثيرات الظهور عند التمرير
+        function animateOnScroll() {
+            const socialCards = document.querySelectorAll('.social-card');
+            const featureCards = document.querySelectorAll('.feature-card');
+            const appShowcase = document.querySelector('.app-showcase');
+            
+            socialCards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                if (cardPosition < screenPosition) {
+                    card.classList.add('visible');
+                }
+            });
+            
+            featureCards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                if (cardPosition < screenPosition) {
+                    card.classList.add('visible');
+                }
+            });
+            
+            if (appShowcase) {
+                const showcasePosition = appShowcase.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                if (showcasePosition < screenPosition) {
+                    appShowcase.classList.add('visible');
+                }
+            }
+        }
+        
+        // تفعيل عند التحميل الأولي
         document.addEventListener('DOMContentLoaded', function() {
-            // Add animation to feature cards on scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
+            animateOnScroll();
+            
+            // إضافة فئة active للرابط النشط
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
                     }
                 });
-            }, { threshold: 0.1 });
-            
-            // Observe feature cards
-            document.querySelectorAll('.feature-card, .social-card').forEach(card => {
-                card.style.opacity = 0;
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
             });
         });
     </script>
