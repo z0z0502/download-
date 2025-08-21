@@ -15,6 +15,10 @@
             --dark-color: #121858;
             --text-color: #333;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --facebook: #3b5998;
+            --telegram: #0088cc;
+            --youtube: #ff0000;
+            --instagram: #e4405f;
         }
         
         * {
@@ -117,6 +121,79 @@
         .btn-gold {
             background: var(--gold-color);
             color: var(--dark-color);
+        }
+        
+        /* Social Media Section */
+        .social-section {
+            background: var(--light-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 200px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            height: 70px;
+            width: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            color: white;
+        }
+        
+        .facebook-icon {
+            background: var(--facebook);
+        }
+        
+        .telegram-icon {
+            background: var(--telegram);
+        }
+        
+        .youtube-icon {
+            background: var(--youtube);
+        }
+        
+        .instagram-icon {
+            background: var(--instagram);
+        }
+        
+        .social-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .social-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .social-link:hover {
+            text-decoration: underline;
         }
         
         /* Features Section */
@@ -343,6 +420,16 @@
             .showcase-content {
                 flex-direction: column;
             }
+            
+            .social-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-card {
+                width: 100%;
+                max-width: 300px;
+            }
         }
         
         .university-badge {
@@ -384,6 +471,50 @@
             <p>يحمي الحقوق، ويعزز العدالة والمساواة. في أورنمو منبع القانون ⚖، ستجد كنزًا من المعرفة القانونية</p>
             <a href="#download" class="btn btn-gold">تحميل التطبيق الآن</a>
             <a href="#features" class="btn">استكشاف المميزات</a>
+        </div>
+    </section>
+    
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title">تواصل معنا على وسائل التواصل الاجتماعي</h2>
+            <div class="social-container">
+                <div class="social-card">
+                    <div class="social-icon facebook-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3>فيسبوك</h3>
+                    <p>تابعنا على فيسبوك</p>
+                    <a href="https://www.facebook.com/share/19iXPBUUZU/" class="social-link" target="_blank">اذهب إلى الصفحة</a>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon telegram-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>تلغرام</h3>
+                    <p>انضم إلى قناتنا</p>
+                    <a href="https://t.me/Ornmo_502" class="social-link" target="_blank">اذهب إلى القناة</a>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon youtube-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>يوتيوب</h3>
+                    <p>اشترك في قناتنا</p>
+                    <a href="https://youtube.com/@ornmo_502?si=k3Pm7nA7O2Tnz6Py" class="social-link" target="_blank">اذهب إلى القناة</a>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>إنستغرام</h3>
+                    <p>تابعنا على إنستغرام</p>
+                    <a href="https://www.instagram.com/ornmo_502?igsh=bjFtcGs3NjhkcHN4" class="social-link" target="_blank">اذهب إلى الصفحة</a>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -473,7 +604,7 @@
                 </ul>
                 
                 <div class="university-badge">
-                    برعاية جامعة وارث الأنبياء
+               برعاية  زيد علي العلي و جامعة وارث الأنبياء
                 </div>
             </div>
         </div>
@@ -504,7 +635,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>عن أورنمو</h3>
-                    <p>أورنمو منبع القانون هو تطبيق شامل يقدم محتوى قانونيًا متكاملًا برعاية جامعة وارث الأنبياء.</p>
+                    <p>    أورنمو منبع القانون هو تطبيق شامل يقدم محتوى قانونيًا متكاملًا     برعاية  زيد علي العلي و جامعة وارث الأنبياء     </p>
                 </div>
                 
                 <div class="footer-section">
@@ -519,15 +650,16 @@
                 <div class="footer-section">
                     <h3>تابعنا</h3>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/share/19iXPBUUZU/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://t.me/Ornmo_502" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://youtube.com/@ornmo_502?si=k3Pm7nA7O2Tnz6Py" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/ornmo_502?igsh=bjFtcGs3NjhkcHN4" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>جميع الحقوق محفوظة &copy; 2023 أورنمو - منبع القانون</p>
+                <p>جميع الحقوق محفوظة &copy; 2026 أورنمو - منبع القانون</p>
             </div>
         </div>
     </footer>
@@ -546,7 +678,7 @@
             }, { threshold: 0.1 });
             
             // Observe feature cards
-            document.querySelectorAll('.feature-card').forEach(card => {
+            document.querySelectorAll('.feature-card, .social-card').forEach(card => {
                 card.style.opacity = 0;
                 card.style.transform = 'translateY(20px)';
                 card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
